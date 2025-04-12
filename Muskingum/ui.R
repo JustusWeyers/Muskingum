@@ -22,26 +22,29 @@ fluidPage(
   ### Data input
   
   h2("Data input"),
-  
+
   shiny::fluidRow(
     col_6(
       shinydashboard::box(
-        title = "Q", width = 12,
+        title = "Calibration in- and outflow event", width = 12,
+        p("Table 1: Fill-in table for timestamp t [h], in- and outflow Q_in and Q_out [both in m^3/s]."),
         rhandsontable::rHandsontableOutput("ui_Q")
       )
     ),
     col_6(
       shinydashboard::box(
-        title = "Zw", width = 12,
-        rhandsontable::rHandsontableOutput("ui_Zw")
+        title = "Flood event", width = 12,
+        p("Table 2: Flood event at inflow measuring point."),
+        rhandsontable::rHandsontableOutput("ui_flood")
       )
     ),
-    
+  ),
+  shiny::fluidRow(
     col_6(
       shinydashboard::box(
-        title = "Select parameter X", width = 12,
+        title = "Select additional X", width = 12,
         shiny::sliderInput(
-          "x", 
+          "X", 
           label = NULL, 
           value = 0.30,
           min = 0.05, 
@@ -66,8 +69,13 @@ fluidPage(
   
   shiny::uiOutput("ui_calculations"),
   
-  ### Plots
+  ### Hysteresis plots
   
-  shiny::uiOutput("ui_plots")
+  shiny::uiOutput("ui_plots"),
+  
+  ### Floodrouting
+  
+  shiny::uiOutput("ui_floodrouting"),
+  
   
 )
